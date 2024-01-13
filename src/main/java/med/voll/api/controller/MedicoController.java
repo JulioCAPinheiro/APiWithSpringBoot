@@ -1,6 +1,9 @@
 package med.voll.api.controller;
 
+import med.voll.api.Repository.IMedicoRepository;
 import med.voll.api.medico.DadosCadastroMedico;
+import med.voll.api.medico.Medico;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/medicos")
 public class MedicoController {
+    @Autowired
+    private IMedicoRepository medicoRepository;
     @PostMapping
-    public void cadastroMedico(@RequestBody DadosCadastroMedico dados){
-        System.out.println(dados.endereco().cep());
-        System.out.println("Olá mundo");
+    public void cadastroMedico(@RequestBody DadosCadastroMedico dados) {
+        medicoRepository.save(new Medico(dados));
     }
-
 
 
 }
