@@ -23,8 +23,10 @@ public class cliente {
     @Embedded
     private Endereco endereco;
 
-    public cliente(DadosCadastroCliente dados){
+    private boolean ativo;
 
+    public cliente(DadosCadastroCliente dados){
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
@@ -32,4 +34,21 @@ public class cliente {
         this.endereco = new Endereco((dados.endereco()));
     }
 
+    public void atualizarInformacao(DTOAtualizarCliente dadosCliente) {
+        if(dadosCliente.nome() != null){
+            this.nome = dadosCliente.nome();
+        }
+
+        if(dadosCliente.telefone() != null){
+            this.telefone = dadosCliente.telefone();
+        }
+
+        if(dadosCliente.endereco() != null){
+            this.endereco.atualizarInformacoes(dadosCliente.endereco());
+        }
+    }
+
+    public void ExcluirCliente() {
+        this.ativo = false;
+    }
 }

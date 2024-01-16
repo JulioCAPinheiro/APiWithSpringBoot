@@ -1,6 +1,17 @@
 spring:
+  flyway:
+    repair: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost/vollmed_api
     username: root
     password: R8$37q84Z9L#
+
+
+
+
+
+
+
+
+
